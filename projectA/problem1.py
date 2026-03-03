@@ -71,6 +71,7 @@ def hyperparam_tuning(X, y):
     
     print(f"Best parameters: {random_search.best_params_}")
     print(f"Best cross-validation score: {random_search.best_score_:.4f}")
+    print(f"Number of records: {len(X)}, Size of each fold: {len(X) // 5}")
     
     return random_search.best_estimator_
 
@@ -98,6 +99,11 @@ if __name__ == '__main__':
 
     # Perform hyperparameter tuning
     best_model = hyperparam_tuning(X_train, y_train)
+
+    # Access the TfidfVectorizer inside the ColumnTransformer inside the Pipeline
+    tfidf = best_model.named_steps['preprocessor'].named_transformers_['tfidf']
+    vocab_size = len(tfidf.vocabulary_)
+    print(f"Vocabulary size: {vocab_size}")
     
     # Generate predictions on test set
     test_predictions, test_probs = generate_final_test_results(best_model, x_test_df)
