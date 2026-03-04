@@ -71,7 +71,9 @@ plt.show()
 
 # ── 5. PREDICT ON TEST SET ────────────────────────────────────────────────────
 
-y_test_pred = best_model.predict(x_test)
+y_test_pred = best_model.predict_proba(x_test)
+y_proba_test = y_test_pred[:, 1]
+np.savetxt('knn_test.txt', y_proba_test, fmt='%.6f')
 
 # Results
 # Fitting 5 folds for each of 50 candidates, totalling 250 fits

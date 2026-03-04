@@ -70,7 +70,9 @@ plt.show()
 
 # ── 5. PREDICT ON TEST SET ────────────────────────────────────────────────────
 
-y_test_pred = best_model.predict(x_test)
+y_test_pred = best_model.predict_proba(x_test)
+y_proba_test = y_test_pred[:, 1]
+np.savetxt('xgboost_test.txt', y_proba_test, fmt='%.6f')
 
 # RESULTS
 # Fitting 3 folds for each of 20 candidates, totalling 60 fits
