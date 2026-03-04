@@ -1,5 +1,0 @@
-sentence_count
-avg_sentence_length
-punctuation_frequency
-readability_ARI
-readability_Kincaid
